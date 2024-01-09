@@ -18,3 +18,20 @@ export const fetchMovies = async () => {
         throw error;
     }
 };
+
+export const fetchMovieDetails = async (id) => {
+    if (id) {
+        try {
+            const response = await api.get(`movie/${id}`, {
+                params: {
+                    language: "en-US",
+                    api_key: process.env.NEXT_PUBLIC_API_KEY,
+                },
+            });
+            return response.data;
+        } catch (error) {
+            console.error('Error getting the movie details:', error);
+            throw error;
+        }
+    }
+};
