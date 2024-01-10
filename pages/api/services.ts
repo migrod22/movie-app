@@ -8,7 +8,6 @@ export const fetchMovies = async () => {
     try {
         const response = await api.get('/movie/popular', {
             params: {
-                language: "en-US",
                 api_key: process.env.NEXT_PUBLIC_API_KEY,
             },
         });
@@ -24,13 +23,28 @@ export const fetchMovieDetails = async (id) => {
         try {
             const response = await api.get(`movie/${id}`, {
                 params: {
-                    language: "en-US",
                     api_key: process.env.NEXT_PUBLIC_API_KEY,
                 },
             });
             return response.data;
         } catch (error) {
             console.error('Error getting the movie details:', error);
+            throw error;
+        }
+    }
+};
+
+export const searchMovie = async (query) => {
+    if (query) {
+        try {
+            const response = await api.get(`search/movie?query=${query}&include_adult=false&language=en-US&page=1`, {
+                params: {
+                    api_key: process.env.NEXT_PUBLIC_API_KEY,
+                },
+            });
+            return response.data;
+        } catch (error) {
+            console.error('Error searching the movie:', error);
             throw error;
         }
     }
