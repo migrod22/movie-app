@@ -1,15 +1,21 @@
 import React, { useRef, useState } from 'react'
 import { searchMovie } from '../pages/api/services';
 import { useRouter } from 'next/router';
+import { useDispatch } from 'react-redux';
 
-export default function MovieSearch({ setMovies, searchQuery, setSearchQuery }) {
+export default function MovieSearch({ searchQuery, setSearchQuery }) {
     const inputRef = useRef(null);
     const router = useRouter()
+
+    const dispatch = useDispatch();
 
     const getMovies = async () => {
         try {
             const moviesData = await searchMovie(searchQuery);
-            setMovies(moviesData)
+            dispatch({
+                type: 'SET_MOVIES',
+                payload: moviesData,
+            });
         } catch (error) {
             console.error('Error fetching movies:', error);
         }
@@ -18,12 +24,12 @@ export default function MovieSearch({ setMovies, searchQuery, setSearchQuery }) 
     const submitSearch = async () => {
         router.push(`/search/${searchQuery}`)
         getMovies()
-
     }
 
     const resetSearch = () => {
         setSearchQuery("")
     }
+
     return (
         <>
             <div className="flex mb-2">
