@@ -22,8 +22,11 @@ export default function MovieSearch({ searchQuery, setSearchQuery }) {
     }
 
     const submitSearch = async () => {
-        router.push(`/search/${searchQuery}`)
-        getMovies()
+        if (searchQuery) {
+            router.push(`/search/${searchQuery}`)
+            getMovies()
+        }
+
     }
 
     const resetSearch = () => {
