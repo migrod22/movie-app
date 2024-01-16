@@ -1,9 +1,10 @@
-import React, { useRef, useState } from 'react'
+import React, { useRef } from 'react'
 import { searchMovie } from '../pages/api/services';
 import { useRouter } from 'next/router';
 import { useDispatch } from 'react-redux';
 
-export default function MovieSearch({ searchQuery, setSearchQuery }) {
+
+const MovieSearch = ({ searchQuery, setSearchQuery }) => {
     const inputRef = useRef(null);
     const router = useRouter()
 
@@ -26,7 +27,6 @@ export default function MovieSearch({ searchQuery, setSearchQuery }) {
             router.push(`/search/${searchQuery}`)
             getMovies()
         }
-
     }
 
     const resetSearch = () => {
@@ -61,3 +61,5 @@ export default function MovieSearch({ searchQuery, setSearchQuery }) {
         </>
     )
 }
+
+export default MovieSearch

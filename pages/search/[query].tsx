@@ -19,7 +19,6 @@ export default function SearchResults() {
     const getMovies = async () => {
         try {
             const moviesData = await searchMovie(query);
-            console.log('moviesData', moviesData)
             dispatch({
                 type: 'SET_MOVIES',
                 payload: moviesData,
@@ -32,7 +31,6 @@ export default function SearchResults() {
     useEffect(() => {
         getMovies()
     }, [query])
-
 
     const loadMore = () => {
         setNumberMovies(numberMovies + 5)

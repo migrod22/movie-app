@@ -38,12 +38,17 @@ const MoviesList = () => {
     return (
         <div className="container mx-auto mt-8">
             <MovieSearch searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
-
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 mb-10">
-                {movies?.results?.map((movie) => (
-                    <MovieCard key={movie.id} movie={movie} />
-                ))}
-            </div>
+            {loading ?
+                <p>Loading movies...</p>
+                :
+                <div className="container mx-auto p-6 grid grid-cols-2 gap-4">
+                    {movies?.results?.map((movie) => (
+                        <div className='col-span-1 flex flex-col bg-white border-2 p-4'>
+                            <MovieCard key={movie.id} movie={movie} />
+                        </div>
+                    ))}
+                </div>
+            }
         </div>
     );
 };

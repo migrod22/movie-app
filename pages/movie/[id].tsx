@@ -20,8 +20,6 @@ const ID = () => {
         getMovieDetails(id)
     }, [id])
 
-    console.log('movieDetail', movieDetail)
-
     const backPage = () => {
         window.history.back()
     }
