@@ -6,32 +6,32 @@ export default function Home() {
   console.log('session', session)
   return (
     <>
-      {session ? (
-        <>
-          <div className="p-4 flex flex-col items-center">
-            <p className="text-xl font-bold mb-4">Welcome, {session.user.name}!</p>
-            <MoviesList />
-          </div>
-          <button
-            className="flex flex-col float-right bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-            onClick={() => signOut()}
-          >
-            Logout
-          </button>
-        </>
-      ) : (
-        <>
-          <div className="p-4 flex flex-col items-center">
-            <p className="text-xl mb-4">Login to display movies!</p>
-            <button
-              className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
-              onClick={() => signIn('google')}
-            >
-              Login with Google
-            </button>
-          </div>
-        </>
-      )}
+      {/* {session ? ( */}
+      <>
+        <div className="p-4 flex flex-col items-center">
+          <p className="text-xl font-bold mb-4">Welcome {session ? session.user.name : ""}!</p>
+          <MoviesList />
+        </div>
+        {/* <button
+          className="flex flex-col float-right bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+          onClick={() => signOut()}
+        >
+          Logout
+        </button> */}
+      </>
+      {/* // ) : (
+      //   <>
+      //     <div className="p-4 flex flex-col items-center">
+      //       <p className="text-xl mb-4">Login to display movies!</p>
+      //       <button
+      //         className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
+      //         onClick={() => signIn('google')}
+      //       >
+      //         Login with Google
+      //       </button>
+      //     </div>
+      //   </>
+      // )} */}
     </>
   )
 }
